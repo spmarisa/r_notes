@@ -58,61 +58,8 @@ Gemfile.lock - Canonical resource of what gems should be installed.
 Rakefile  - Lists available for tasks used by Rake.
 README.rdoc - Human readable file generated to describe an application.
 
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-DATABASE
-database - configutaion
-in config/databse.yml - change accordingly
-
-- .yml - YAML Ain’t Markup Language”) is a special language for expressing objects in plain text.
- create a db - rake db:create
-               rake db:create:all
-
-drop a db - rake db:drop
-            rake db:migrate
-
-
-if its scheme - rake db:setup
-
-
-
-
-MYSQL
-
-gem 'mysql2'
-gem 'transaction_retry'
-
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 10
-  timeout: 5000
-  username: root
-  password: apple123$
-  host: 127.0.0.1
-  reconnect: true
-
-
-development:
-  <<: *default
-  database: blog_development
-
-
-rails dbconsole
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-Active Record is based on a design pattern. Design patterns are standard solutions to common problems in software design.
-In the pattern Fowler described, a one-to-one mapping exists between a database record and the object that represents it
-
-
-
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 rake about
 
 to choose a web server  -  rails server webrick
-

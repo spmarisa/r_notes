@@ -1,0 +1,23 @@
+Dir.glob('*')
+
+
+tuning primer
+
+
+string
+array
+hash
+
+regex
+
+procs and blocs
+ unit testing
+ security
+
+
+
+ capistrano
+ retrospective
+
+
+ usecases - the buyer and the seller 

@@ -1,0 +1,94 @@
+Objects are all about data and operations, and databases are all about sets of values.
+Operations that are easy to express in relational terms are sometimes difficult to code in an OO system.
+The reverse is also true.
+
+
+So, an ORM layer maps tables to classes, rows to objects, and columns to attributes of those objects.
+
+Class methods are used to perform table-level operations, and instance methods perform operations on the individual rows
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+DATABASE
+database - configutaion
+in config/databse.yml - change accordingly
+
+- .yml - YAML Ain’t Markup Language”) is a special language for expressing objects in plain text.
+ create a db - rake db:create
+               rake db:create:all
+
+drop a db - rake db:drop
+            rake db:migrate
+
+
+if its scheme - rake db:setup
+
+
+
+
+MYSQL
+
+gem 'mysql2'
+gem 'transaction_retry'
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 10
+  timeout: 5000
+  username: root
+  password: apple123$
+  host: 127.0.0.1
+  reconnect: true
+
+
+development:
+  <<: *default
+  database: blog_development
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+rails dbconsole
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Active Record is based on a design pattern. Design patterns are standard solutions to common problems in software design.
+In the pattern Fowler described, a one-to-one mapping exists between a database record and the object that represents it
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+rake db:migrate:redo
+
+rake db:seed
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+Product.delete_all
+# . . .
+Product.create!(title: 'Programming Ruby 1.9 & 2.0',
+                description:
+                            %{<p>
+                            Ruby is the fastest growing and most exciting dynamic language
+                            out there. If you need to get working programs delivered fast,
+                            you should add Ruby to your toolbox.
+                            </p>},
+                image_url: 'ruby.jpg',
+                price: 49.95)
+# . . .
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+      t.decimal :price
+      t.decimal :price, precision: 8, scale: 2
+

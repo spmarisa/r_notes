@@ -1,0 +1,5 @@
+rake test
+
+the output should be two lines that each say 0 failures, 0 errors. This is for the model and controller tests that Rails generates along with the scaffolding. 
+
+
