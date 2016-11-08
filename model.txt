@@ -1,0 +1,47 @@
+MODEL - models in Rails correspond to database table names.
+
+
+
+Article model expects a table named articles.
+model names are camel-cased singular(ArticleImage) and correspond to lower-cased plural table names(article_images).
+
+rails generate model
+rails generate model NAME [field[:type][:index] field[:type][:index]] [options]
+rails generate model Article title:string body:text published_at:datetime --skip-migration
+
+rails generate model Article
+
+
+VALIDATIONS
+
+  validates :title, presence: true
+
+
+
+A model contains all the logic that governs its citizenship in the world of your application. 
+In the model, you can define how it interacts with other models. Models need to relate to one another
+all the logic for a particular table is contained in one place: the model.
+
+FAT model - Instead of performing model-related logic in other places you keep it in the model, thus making it fat and helps your code stay DRY
+
+
+                                                USING ASSOCIATIONS
+Rails convention, the foreign-key column is the singular, lowercase name of the target class with _id appended
+the model that contains the “belong_to” needs to have the foreign key column in it.
+
+ONE-TO-ONE ASSOCIATION
+
+class User < ActiveRecord::Base
+ has_one :profile
+end
+
+class Profile < ActiveRecord::Base
+ belongs_to :user
+end
+
+create user
+create profile
+
+user.profile = profile
+
+user.profile

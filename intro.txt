@@ -1,0 +1,118 @@
+Do the simplest thing that could possibly work.
+
+David Heinemeier Hansson - rails
+yukishiro matsumoto - ruby
+
+domain-specific language - (DSL)
+
+don’t repeat yourself (DRY) principle, and the you ain’t gonna need it (YAGNI)
+
+Convention over configuration means that you need to define only configuration that is unconventional.
+
+mvc pattern - model data - view ui - controller all actions
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+MODEL - active record- data access, associations, - lib that handles db abstraction and interaction
+validations, calculations, and routines that should be executed before and after save, update, or destroy - info the application works with - represets database
+
+
+CONTROLLER - Action controller  - director of interaction between model and view - controllers are responsible for rendering views -
+in controller every method is called action
+A library for manipulating both application flow and the data coming from the database on its way to being displayed in a view.
+
+
+VIEW - action view - visual rep of ui - a templating sys that generates html
+Any direct interaction with the model layer should be delegated to the controller layer, to keep the view clean and decoupled from the application’s business logic.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATING APPLICATION - rails new application_name
+                       rails new hello
+
+bundle install
+
+rails server | rails s
+default IP address 0.0.0.0 on port 300
+http://localhost:3000/
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+RAILS DIRECTORY STRUCTURE
+
+app - All the components of your application.
+bin - Executables to support Rails.
+config - Configuration files for all of the components of your application.
+db - Files related to the database you’re using, and a folder for migrations.
+Gemfile  - Used by the bundler gem to keep a list of gems used in your application.
+lib  - Libraries that may be used in your application.
+log - Log files that your application may require.
+public  - Static assets served by your application, such as images, JavaScript, and CSS files.
+test - Directory containing test unit tests for your application.
+tmp - Contains temporary files supporting your application.
+vendor - External libraries, such as gems and plug-ins, that your application bundles.
+
+config.ru - A file used by rack servers to start the application.
+Gemfile.lock - Canonical resource of what gems should be installed.
+Rakefile  - Lists available for tasks used by Rake.
+README.rdoc - Human readable file generated to describe an application.
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DATABASE
+database - configutaion
+in config/databse.yml - change accordingly
+
+- .yml - YAML Ain’t Markup Language”) is a special language for expressing objects in plain text.
+ create a db - rake db:create
+               rake db:create:all
+
+drop a db - rake db:drop
+            rake db:migrate
+
+
+if its scheme - rake db:setup
+
+
+
+
+MYSQL
+
+gem 'mysql2'
+gem 'transaction_retry'
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 10
+  timeout: 5000
+  username: root
+  password: apple123$
+  host: 127.0.0.1
+  reconnect: true
+
+
+development:
+  <<: *default
+  database: blog_development
+
+
+rails dbconsole
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Active Record is based on a design pattern. Design patterns are standard solutions to common problems in software design.
+In the pattern Fowler described, a one-to-one mapping exists between a database record and the object that represents it
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+rake about
+
+to choose a web server  -  rails server webrick
+

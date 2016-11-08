@@ -1,0 +1,13 @@
+CONTROLLER
+GENERATING CONTROLLER - rails generate controller controller_name | rails g controller controller_name
+rails generate controller salutation
+
+generally every controller action has a view with the name of the action name
+
+
+rails generate controller
+rails generate controller NAME [action action] [options]
+rails generate controller articles index show --skip-routes
+
+rails generate controller articles
+

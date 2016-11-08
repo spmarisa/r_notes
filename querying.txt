@@ -1,0 +1,80 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Article.column_names
+
+Article.methods
+Article.methods.size
+
+a = Article.new
+a.title = "Beginning Rails 4"
+a.publisher = "Apress"
+a.published_at = "2013-10-21"
+a.save
+
+b = Article.new
+b.new_record?
+
+Article.count
+
+c = Article.new(:title => "Introduction to Active Record", :body => "Active Record is Rails's default ORM..", :published_at =>Date.today)
+c.save
+
+Article.create(:title => "RubyConf 2013", :body => "The annual RubyConf will take place in..", :published_at => '2013-04-13')
+
+
+
+article = Article.first
+article.title = "Rails 4 is great"
+article.published_at = Time.now
+article.save
+
+
+article = Article.first
+article.update_attributes(:title => "RailsConf2013", :published_at => 1.day.ago)
+
+
+article = Article.last
+article.destroy
+Article.destroy(1)
+Article.destroy([2,3])
+
+
+Article.delete(4)
+Article.delete([2,3])
+Article.delete_all("published_at < '2011-01-01'")
+
+
+article = Article.new
+article.save
+article.errors.any?
+article.errors.full_messages
+article.errors.messages(:title)
+article.errors.size
+article.valid?
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Article.all
+Article.first
+Article.last
+
+Article.find(:id)
+Article.find(1)
+
+Article.where(:title => 'RailsConf').first
+Article.where(:title => 'RailsConf').all
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+articles = Article.order("published_at")
+articles = Article.order ('published_at DESC')
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a = Article.all
+a.each { |article| puts article.title }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+User.where(:name => 'Linus').first

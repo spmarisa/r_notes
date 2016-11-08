@@ -1,0 +1,12 @@
+rails by default gets 3 standard modes of operation - development
+                                                    - test
+                                                    - production
+
+
+
+environment can be specified via RAILS_ENV
+
+
+
+
+gem list --local rails                                                    
