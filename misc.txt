@@ -4,11 +4,13 @@ Dir.glob('*')
 tuning primer
 
 
+more ruby 
+
 string
 array
 hash
 
-regex
+regex regex
 
 procs and blocs
  unit testing

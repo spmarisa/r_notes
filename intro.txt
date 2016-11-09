@@ -13,16 +13,16 @@ mvc pattern - model data - view ui - controller all actions
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-MODEL - active record- data access, associations, - lib that handles db abstraction and interaction
+MODEL - ACTIVE RECORD- data access, associations, - lib that handles db abstraction and interaction
 validations, calculations, and routines that should be executed before and after save, update, or destroy - info the application works with - represets database
 
 
-CONTROLLER - Action controller  - director of interaction between model and view - controllers are responsible for rendering views -
+CONTROLLER - ACTION CONTROLLER  - director of interaction between model and view - controllers are responsible for rendering views -
 in controller every method is called action
 A library for manipulating both application flow and the data coming from the database on its way to being displayed in a view.
 
 
-VIEW - action view - visual rep of ui - a templating sys that generates html
+VIEW - ACTION VIEW - visual rep of ui - a templating sys that generates html
 Any direct interaction with the model layer should be delegated to the controller layer, to keep the view clean and decoupled from the application’s business logic.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -5,3 +5,6 @@ rails generate scaffold Article title:string body:text published_at:datetime --s
 rails generate migration add_excerpt_and_location_to_articles excerpt:string location:string
 
 rails generate scaffold Article title:string location:string excerpt:string body:text published_at:datetime --skip-migration
+
+
+add_column :articles, :user_id, :integer

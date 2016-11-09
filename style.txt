@@ -1,0 +1,4 @@
+The rows in the listing have alternating background colors. The Rails
+helper method called cycle() does this by setting the CSS class of each row
+to either list_line_even or list_line_odd, automatically toggling between the two
+style names on successive lines.

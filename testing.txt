@@ -1,0 +1,14 @@
+rake test
+
+the output should be two lines that each say 0 failures, 0 errors. This is for the model and controller tests that Rails generates along with the scaffolding. 
+
+
+functional testing of controllers
+
+unit testing for models
+mini test framework
+
+
+An assertion is simply a method call that tells the framework what we expect to be true.
+
+ rake test:models

@@ -25,11 +25,18 @@ all the logic for a particular table is contained in one place: the model.
 FAT model - Instead of performing model-related logic in other places you keep it in the model, thus making it fat and helps your code stay DRY
 
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
                                                 USING ASSOCIATIONS
 Rails convention, the foreign-key column is the singular, lowercase name of the target class with _id appended
 the model that contains the “belong_to” needs to have the foreign key column in it.
 
-ONE-TO-ONE ASSOCIATION
+
+has_one | has_many | belongs_to | has_and_belongs_to_many
+
+
+                                                ONE-TO-ONE ASSOCIATION
 
 class User < ActiveRecord::Base
  has_one :profile
@@ -45,3 +52,119 @@ create profile
 user.profile = profile
 
 user.profile
+
+
+#Returns a new Profile object that has been instantiated with attributes and linked to user through a foreign key and saved
+user.create_profile name: 'Jane Doe', color: 'pink'
+
+#Returns a new Profile object that has been instantiated with attributes and linked to user through a foreign key but hasn’t yet been saved
+user.build_profile name: 'Jane Doe', color: 'pink'
+
+
+user.profile.nil?
+
+common options  -> :class_name     has_one :profile, class_name: 'Account'
+                   :conditions     has_one :profile, conditions: "active = 1"
+                   :foreign_key    has_one :profile, foreign_key: "account_id"
+                   :order          has_one :profile, order: "created_at DESC"
+
+specifies that an associated object should be removed.  :destroy - assoc object is deleted using destroy method. if set to :delete the assoc object is deleted using the destroy method. if set to :nullify the associated object's foreign key is set to null
+
+                   :dependent      has_one :profile, dependent: :destroy
+
+
+
+                                           ONE-TO-MANY ASSOCIATIONS
+
+class Article < ActiveRecord::Base
+  belongs_to :user
+end
+
+class User < ActiveRecord::Base
+  belongs_many :articles
+end
+
+user = User.first
+user.articles
+
+user.articles << Article.first
+
+user.articles.size
+user.articles.count
+
+Article.first.user
+Article.first.user_id
+
+
+METHODS
+ user.articles
+ user.articles=(articles)
+ user.articles << Article.last
+ user.articles.empty?
+ user.articles.size
+
+ user.article_ids
+ 
+ user.articles.clear #clears all associated objects from the association by setting their foreign key to null
+
+ user.articles.find  #performs find within the scope of the user
+
+ user.articles.build(attributes={})
+
+ user.articles.create(attributes={})
+
+ user.articles.create title: 'Associations', body: 'Active Record makes working with associations easy..'
+
+
+
+COMMON METHODS
+
+  :class_name     has_many :articles, class_name: 'Account
+  :conditions     has_many :articles, conditions: "active = 1"
+  :foreign_key    has_many :articles, foreign_key: "account_id"
+  :order          has_many :articles, order: "created_at DESC"
+  :dependent      has_many :articles, dependent: :destroy
+
+
+
+                                           MANY-TO-MANY ASSOCIATIONS
+
+two tables are connected to multiple rows on bothsides - to add categories to articles
+the has_and_belongs_to_many(habtm) association works by relying on a join table
+
+The join table sits between the tables you want to join: articles and categories. Not surprisingly, then, the join table in this case is called articles_categories in alphabetical order.
+
+
+class Article < ActiveRecord::Base
+  belongs_to :user
+end
+
+class User < ActiveRecord::Base
+  belongs_many :articles
+end
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+model’s errors() and invalid?() methods
+we can use the any?() method of the error list to see whether there is an error associated with a particular attribute.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+You give the name of the field that you want to order by
+
+ has_many :articles, -> { order('published_at DESC') }
+ has_many :articles, -> { order('published_at ASC') }
+
+ You can also specify a secondary order by adding a comma between arguments. 
+
+  has_many :articles, -> { order('published_at DESC, title ASC')}
+
+ dependency specifying
+ 
+  has_many :articles, -> { order('published_at DESC, title ASC')}, :dependent => :destroy
+  has_many :articles, -> { order('published_at DESC, title ASC')}, :dependent => :nullify

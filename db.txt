@@ -10,6 +10,12 @@ Class methods are used to perform table-level operations, and instance methods p
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+rake db:create:all
+ rails dbconsole
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 
 DATABASE
@@ -92,3 +98,11 @@ Product.create!(title: 'Programming Ruby 1.9 & 2.0',
       t.decimal :price
       t.decimal :price, precision: 8, scale: 2
 
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+rake db:seed
+
+ rake db:setup, which re-creates the database and adds the seed data as you may expect.
