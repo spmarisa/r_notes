@@ -78,3 +78,28 @@ a.each { |article| puts article.title }
 
 
 User.where(:name => 'Linus').first
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+abit advanced
+
+
+
+The most basic condition style is the hash syntax. Active Record takes the Hash passed to the where method and turns
+the keys into column names and the values into parameters to match.
+
+
+Article.where(title: 'Advanced Active Record') 
+
+#USING AN SQL FRAGMENT
+
+Article.where("title = 'Advanced Active Record'")
+
+#some conditions only sql can do
+
+Article.where("created_at > '23-04-2013' OR body NOT LIKE '%model%'")
+
+Article.where("created_at > '23-04-2013' AND body NOT LIKE '%model%'")
+
+#using an array condition syntax - to prevent sql injection
+
+Article.where("published_at < ?", Time.now)

@@ -142,11 +142,45 @@ end
 class User < ActiveRecord::Base
   belongs_many :articles
 end
+  
+  Article.first.categories << Category.last
 
 
+METHODS: 
+      
+      article.categories.any?
+
+      article.categories.size
+
+      category.articles.empty?
+      category.articles.size
+
+      category.articles.first.title
 
 
+                                         CREATING A RICH MANY-TO-MANY ASSOCIATIONS
 
+to put extra data on the join model, create a rich many to many association using has_many :through                                         
+
+the rich many-to-many relationship between comments and users, through articles
+
+class Comment < ActiveRecord::Base
+  belongs_to :article
+end
+
+
+class Article < ActiveRecord::Base
+  has_many :comments
+end
+
+class User < ActiveRecord::Base
+ has_many :replies, :through => :articles, :source => :comments
+end
+
+#adding a comment to an article that belongs to a user
+Article.first.comments << comment
+
+User.first.replies
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
