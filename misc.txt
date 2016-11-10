@@ -23,3 +23,6 @@ procs and blocs
 
 
  usecases - the buyer and the seller 
+
+
+lambda - it is a self contained standalone method, executed only when you invoke it

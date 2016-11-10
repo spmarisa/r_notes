@@ -9,4 +9,12 @@ environment can be specified via RAILS_ENV
 
 
 
-gem list --local rails                                                    
+gem list --local rails  
+
+
+#to get a live feed from your logs.                                                  
+tail -f log/development.log
+
+
+Rails.logger.debug "This will only show in development"
+Rails.logger.warn "This will show in all environments"

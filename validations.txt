@@ -1,0 +1,73 @@
+rails got many built in validators 
+
+DEFAULT OPTIONS FOR ALL VALIDATIONS
+
+:message | Specifies the error message shown if validation fails | :message => "too long"
+
+:on      | Specifies when this validation happens. The default is :save. | :on => :create 
+           Other options are :create and :update.
+
+
+
+class Article < ActiveRecord::Base
+  validates :title, presence: true
+end
+
+The default message is “can’t be blank.”
+
+
+#VALIDATING THAT A VALUE IS UNIQUE
+
+ validates_uniqueness_of :email
+ validates :email, unique: true
+
+  The default error message is “#{value} has already been taken.”
+
+The :scope option can also validate whether the value of the specified attributes is unique based on multiple parameters.  
+
+class Schedule < ActiveRecord::Base
+  validates_uniqueness_of :teacher_id, :scope => [:semester_id, :class_id]
+end
+
+
+#VALIDATING LENGTH OR SIZE
+
+  validates :bio, length: { maximum: 500 }
+  validates :password, length: { in: 6..20
+ 
+  validates_length_of :email, :within => 5..50
+
+ other options for validating length 
+  :minimun, :maximun, :is (exact size of attribute), :within, :allow_nil, :too_long (error message to add), :too_short, :wrong_length, :message
+
+
+#VALIDATING THE FORMAT OF AN ATTRIBUTE
+  validates_format_of :email, :with => /^[^@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i
+
+
+
+#Validating Confirmation
+ validates_confirmation_of :password
+
+#other validations
+ validates_acceptance_of, which validates the acceptance of a Boolean field.
+
+#custom validation methods
+#active record gives you nice objects called errors to use. Whenever you want to add a validation error to the list of errors, you just type errors.add(column_name, error_message).
+
+ class Article < ActiveRecord::Base
+	def published?
+		published_at.present?
+	end
+ end
+ 
+ class Comment < ActiveRecord::Base
+	
+	validates_presence_of :name, :email, :body
+	
+	validate :article_should_be_published
+	
+	def article_should_be_published
+	   errors.add(:article_id, "is not published yet") if article && !article.published?
+	end
+ end

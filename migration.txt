@@ -8,3 +8,6 @@ rails generate scaffold Article title:string location:string excerpt:string body
 
 
 add_column :articles, :user_id, :integer
+
+
+rename_column :users, :password, :hashed_password

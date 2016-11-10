@@ -103,3 +103,35 @@ Article.where("created_at > '23-04-2013' AND body NOT LIKE '%model%'")
 #using an array condition syntax - to prevent sql injection
 
 Article.where("published_at < ?", Time.now)
+
+#for a cross check reference
+Article.where("published_at < ?", Time.now).to_sql
+
+Article.where("created_at = ?", Article.last.created_at)
+
+#more conditions
+Article.where("created_at = ? OR body LIKE ?", Article.last.created_at, 'model')
+
+#reuse the same term in multiple places in your condition.
+Article.where("title LIKE :search OR body LIKE :search", {search: '%association%'})
+
+#using association proxies
+User.first.articles.all
+
+#creating an associated object
+ User.first.articles.create(title: 'Private', body: 'Body here..')
+
+
+
+ SOME ACTIVE RECORD FINDER METHODS
+
+ where(conditions)
+ order
+ limit
+ joins
+ includes
+
+
+Article.order("title ASC") 
+Article.order("title DESC").limit(2)
+
