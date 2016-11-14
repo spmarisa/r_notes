@@ -1,0 +1,45 @@
+when an action has completed, it attempts to render a template of the same name
+
+The render method takes several options for its first argument: :text, :nothing, :inline, :template, :action,
+:xml, :json, :js, and :update.
+
+The :update and :js responses are fairly specialized. You use them when you’re rendering Ajax or JavaScript
+responses
+
+REDIRECTING - The redirect_to method usually takes a URL as a parameter, which in most cases is represented by one of
+your routes.
+
+ApplicationController < ActionController::Base
+ArticlesController < ApplicationController
+
+
+generally in view Handle the response using the respond_to method to either do a render or redirect_to
+another path, depending on the behavior you want to achieve
+
+
+PARTIAL TEMPLATEs - partials - they help cutown on duplication, prefixed with an underscore( _form )
+local variable assignment in partials
+
+<%= render 'header', :title => 'My Blog' %>
+any number of local variables can be assigned this way 
+
+RENDER AN OBJECT PARTIAL
+
+<%= render @article %>
+Rails looks for a partial in app/views/articles/_article.html.erb and automatically assigns a local variable
+called article. It’s a shortcut for:
+<%= render 'articles/article', :article => @article %>
+
+RENDERING A COLLECTION OF PARTIALS
+
+<%= render @articles %>
+
+if the @articles array contains different Active Record objects, such as two articles and two comments, the render call
+renders the right partial template for each of those objects. It renders /app/views/comments/_comment.html.erb for
+the comment objects and /app/views/articles/_article.html.erb for the article objects.
+
+<% @articles.each do |object| %>
+	<%= render object %>
+<% end %>
+
+

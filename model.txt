@@ -235,7 +235,9 @@ end
  Article.recent
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- attr_accessor :password: This defines an accessor attribute, password, at the top of the class
+ attr_accessor :password
+
+ This defines an accessor attribute, password, at the top of the class
 body. It tells Ruby to create reader and writer methods for password. Because the password
 column doesn’t exist in your table anymore, a password method isn’t created automatically
 by Active Record. Still, you need a way to set the password before it’s encrypted, so you make

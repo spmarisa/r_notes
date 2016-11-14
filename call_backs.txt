@@ -6,3 +6,6 @@ you want certain things to happen during the life cycle of the model
  after_save
  before_destroy
  after_destroy
+
+
+ 
