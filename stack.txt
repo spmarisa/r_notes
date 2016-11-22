@@ -1,0 +1,14 @@
+OMAKASE STACk
+
+erb for view
+mysql for db
+minitest for testing
+fat models and skinny controllers
+
+
+PRIME STACK
+
+haml for views
+postgres for db
+rspec/cucumber for testing
+skinny models, controllers and a service layer

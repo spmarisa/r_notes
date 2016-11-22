@@ -1,0 +1,23 @@
+dont even leave minute details
+
+have both client side and server side validations
+
+never return null
+
+clarity
+
+
+pubsub
+
+DATE, TIME purpose and ist and utc
+every time you deal with time, check timezone
+
+serialization
+
+commit - production steps
+       - revert back steps
+
+maths
+
+
+with numbers + or _       
