@@ -4,7 +4,7 @@ Dir.glob('*')
 tuning primer
 
 
-more ruby 
+more ruby
 
 string
 array
@@ -22,7 +22,7 @@ procs and blocs
  retrospective
 
 
- usecases - the buyer and the seller 
-
+ usecases - the buyer and the seller
 
 breakman gem
+lambda - it is a self contained standalone method, executed only when you invoke it

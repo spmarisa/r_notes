@@ -202,3 +202,44 @@ You give the name of the field that you want to order by
  
   has_many :articles, -> { order('published_at DESC, title ASC')}, :dependent => :destroy
   has_many :articles, -> { order('published_at DESC, title ASC')}, :dependent => :nullify
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+DEFAULT SCOPE
+
+sorting the results, which in most cases is done on the primary key id.
+
+class Category < ActiveRecord::Base
+  default_scope lambda { order('categories.name') }
+end
+
+NAMED SCOPE
+
+class Article < ActiveRecord::Base
+ scope :published, lambda { where("articles.published_at IS NOT NULL") }
+ scope :draft, lambda { where("articles.published_at IS NULL") }
+ scope :recent, lambda { published.where("articles.published_at > ?", 1.week.ago.to_date) }
+end
+
+#to make scope more useful define scope that can receive param and search accordingly
+
+class Article < ActiveRecord::Base
+  scope :where_title, lambda { |term| where("articles.title LIKE ?", "%#{term}%") }
+end
+
+ Article.where_title("monolithic")
+ Article.published
+ Article.draft
+ Article.recent
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ attr_accessor :password
+
+ This defines an accessor attribute, password, at the top of the class
+body. It tells Ruby to create reader and writer methods for password. Because the password
+column doesn’t exist in your table anymore, a password method isn’t created automatically
+by Active Record. Still, you need a way to set the password before it’s encrypted, so you make
+your own attribute to use. This works like any model attribute, except that it isn’t persisted to
+the database when the model is saved.

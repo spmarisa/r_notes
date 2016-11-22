@@ -1,0 +1,34 @@
+Two basic varieties of form helpers are available:
+
+  FormHelper: Active Record–aware tag helpers for creating forms that hook into models.
+
+  FormTagHelper: Helpers that output tags. They aren’t integrated with Active Record.
+                 The names of these helpers are suffixed with _tag.
+
+
+the advantage with FormHelper is that they know how to populate themselves with data and can automatically be highlighted in the event of validation errors
+
+
+FormHelper - form_for, label, text_field, text_area, datetime_select, and submit.
+
+The form_for helper is of the FormHelper variety. It creates an HTML form tag for the passed object (@article, in
+this case) and places everything in the do..end block inside the resulting form.
+
+PATCH - used to update a record partially
+
+PUT - used to update a record completely
+
+label
+text_field
+text_area
+datetime_select
+submit
+
+hidden_field
+password_field
+file_field
+check_box
+radio_button
+
+
+

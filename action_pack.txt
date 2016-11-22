@@ -1,0 +1,24 @@
+both the controller and view is called as action pack
+
+action controller 
+
+action view
+
+embedded ruby
+
+helpers
+
+routing - default routes that Rails creates for you, create named routes, and use routes when creating links and redirects in your code.
+
+
+restful resources - The REST principle is based on working with information in the form of resources. Each piece of information is
+dealt with as a resource, each resource has a unique interaction point for every action that can be performed on it, and
+each interaction point (action) is normally represented using a URL and a request method
+
+POST
+
+GET
+
+PATCH/PUT
+
+DELETE

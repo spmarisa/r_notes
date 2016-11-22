@@ -1,0 +1,23 @@
+for a share header and footer on all pages
+The application.html.erb layout is applied to all controllers.
+
+if you want a layout that only applies only to artcles controller should be created in
+app/views/layouts/articles.html.erb
+a controller attempts to use a layout that matches its name
+
+
+<%= yield %> is where the content goes in application.html.erb
+rails is all about convention over configuration 
+here application.html.erb is automatically applied to all templates unless an alternate is specified. 
+if you change the name of the layout as it stands, it won’t be automatically applied. 
+
+class ExampleController < ApplicationController
+  layout 'my_layout' # Will use a layout in app/views/layouts/my_layout.html.erb
+end
+
+You can include a layout for a specific action with an explicit call to render inside the action:
+render :layout => 'my_layout'.
+
+Sometimes, you want to render an action without a layout. In that case, you can pass false in
+place of the layout name: render :layout => false.
+

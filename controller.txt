@@ -11,3 +11,4 @@ rails generate controller articles index show --skip-routes
 
 rails generate controller articles
 
+generally there are 7 actions inex, new, show, edit, create, update, delete

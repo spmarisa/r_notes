@@ -1,0 +1,11 @@
+you want certain things to happen during the life cycle of the model
+6 commonly used callbacks
+ before_create
+ after_create
+ before_save
+ after_save
+ before_destroy
+ after_destroy
+
+
+ 

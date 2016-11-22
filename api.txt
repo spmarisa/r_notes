@@ -1,0 +1,5 @@
+an api is a set of functions that enables other applications to talk to your application
+generally its done using json and rest is one of the main architectures used for that
+
+
+

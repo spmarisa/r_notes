@@ -1,5 +1,52 @@
 
 ROUTES
+
+
 Hello::Application.routes.draw do
-get ':controller(/:action(/:id(.:format)))'
+ get ':controller(/:action(/:id(.:format)))'
 end
+
+
+        URL            CONTROLLER#ACTION 
+get '/teams/home' => 'teams#index'
+
+
+
+get '/teams/search/:query' => 'teams#search'
+ http://example.com/teams/search/toronto
+
+ we are spceifying the query as an inline variable
+
+ NAMED ROUTES
+get '/teams/search/:query' => 'teams#search', :as => 'search'
+
+search_url - The *_url variant returns a full URL including the protocol and hostname
+search_path - the *_path variant returns just the path (/teams/search)
+
+link_to "Search", search_path == <a href="/teams/search">Search</a>
+
+
+RESTFUL ROUTES AND RESOURCES
+
+RESTful design information is dealt with in the form of resources. Rails makes it easy for you to do that
+for every action in your controller, you have an associated named route to call.
+
+Resources are configured in the routes.rb file using the resources method. 
+
+
+
+GET    - articles_path 	   -               	    - /articles(.:format)          - articles#index
+POST   - articles_path 	   - Record hash        - /articles(.:format)          - articles#create
+GET    - article_path  	   - ID                 - /articles/new(.:format) 	   - articles#show
+PUT    - article_path  	   - ID and Record hash - /articles/:id(.:format)      - article#Update
+PATCH  - article_path 	   - ID and Record hash - /articles/:id(.:format)      - article#Update
+DELETE - article_path 	   - ID                 - /articles/:id(.:format)      - article#destroy
+GET    - edit_article_path - ID                 - /articles/:id/edit(.:format) - article#edit
+GET    - new_article_path  -                    - /articles/new(.:format)      - article#new
+
+
+
+-> to see all routes rake routes - localhost:3000/rails/info/routes
+
+-> to set root root :to => "articles#index"
+
