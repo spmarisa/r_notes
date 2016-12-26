@@ -18,14 +18,16 @@ VALIDATIONS
 
 
 
+
 A model contains all the logic that governs its citizenship in the world of your application. 
 In the model, you can define how it interacts with other models. Models need to relate to one another
 all the logic for a particular table is contained in one place: the model.
 
 FAT model - Instead of performing model-related logic in other places you keep it in the model, thus making it fat and helps your code stay DRY
 
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Active Record lets you model real-world things in your code. Rails calls these real-world things models
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
                                                 USING ASSOCIATIONS
@@ -100,6 +102,7 @@ METHODS
  user.articles
  user.articles=(articles)
  user.articles << Article.last
+ user.articles.delete(Article.last)
  user.articles.empty?
  user.articles.size
 
@@ -164,18 +167,22 @@ to put extra data on the join model, create a rich many to many association usin
 
 the rich many-to-many relationship between comments and users, through articles
 
+
+class User < ActiveRecord::Base
+ has_many :articles
+ has_many :replies, :through => :articles, :source => :comments
+end
+
+class Article < ActiveRecord::Base
+  belongs_to :user
+  has_many :comments
+end
+
 class Comment < ActiveRecord::Base
   belongs_to :article
 end
 
 
-class Article < ActiveRecord::Base
-  has_many :comments
-end
-
-class User < ActiveRecord::Base
- has_many :replies, :through => :articles, :source => :comments
-end
 
 #adding a comment to an article that belongs to a user
 Article.first.comments << comment
@@ -229,6 +236,7 @@ class Article < ActiveRecord::Base
   scope :where_title, lambda { |term| where("articles.title LIKE ?", "%#{term}%") }
 end
 
+
  Article.where_title("monolithic")
  Article.published
  Article.draft
@@ -243,3 +251,6 @@ column doesn’t exist in your table anymore, a password method isn’t created 
 by Active Record. Still, you need a way to set the password before it’s encrypted, so you make
 your own attribute to use. This works like any model attribute, except that it isn’t persisted to
 the database when the model is saved.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

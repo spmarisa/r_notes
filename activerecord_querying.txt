@@ -21,11 +21,18 @@ c.save
 Article.create(:title => "RubyConf 2013", :body => "The annual RubyConf will take place in..", :published_at => '2013-04-13')
 
 
+attributes = { :title => "Rails Pub Nite", :body => "Rails Pub Nite is every
+3rd Monday of each month, except in December.", :published_at => "2013-04-13"}
+
+Article.create(attributes)
+
 
 article = Article.first
 article.title = "Rails 4 is great"
 article.published_at = Time.now
 article.save
+
+
 
 
 article = Article.first
@@ -60,8 +67,23 @@ Article.last
 Article.find(:id)
 Article.find(1)
 
+begin
+Article.find(1037)
+rescue ActiveRecord::RecordNotFound
+puts "We couldn't find that record"
+end
+
+#throws error
+Article.find(3)
+#gives nil if article with id doesnot exist
+Article.find_by_id(3)
+
+
 Article.where(:title => 'RailsConf').first
 Article.where(:title => 'RailsConf').all
+
+User.where(:name => 'Linus').first
+
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -75,13 +97,24 @@ a.each { |article| puts article.title }
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+article = Article.new
+
+article.save
+
+article.errors.any?
 
 
-User.where(:name => 'Linus').first
+article.errors.full_messages
+
+ article.errors.messages(:title)
+
+
+article.errors.size
+
+article.valid?
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-abit advanced
-
+ADVANCED FINDING
 
 
 The most basic condition style is the hash syntax. Active Record takes the Hash passed to the where method and turns
@@ -118,6 +151,9 @@ Article.where("title LIKE :search OR body LIKE :search", {search: '%association%
 #using association proxies
 User.first.articles.all
 
+# for two or more conditions
+Article.where("created_at = ? OR body LIKE ?", Article.last.created_at, 'model')
+
 #creating an associated object
  User.first.articles.create(title: 'Private', body: 'Body here..')
 
@@ -134,4 +170,10 @@ User.first.articles.all
 
 Article.order("title ASC") 
 Article.order("title DESC").limit(2)
+
+Article.limit(1)
+
+Article.joins(:comments)
+
+Article.includes(:comments)
 

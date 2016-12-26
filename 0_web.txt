@@ -1,0 +1,11 @@
+FRAMEWORK - Full stack
+          - open source
+          - cross platform
+          - a place for everything
+          - a database abstraction layer
+          - community
+
+
+RAILS solve 80% of the problems that occur in web and the remaining 20% are unique to the application domain
+
+RAILS - MVC FRAMEWORK           
