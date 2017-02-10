@@ -1,0 +1,5 @@
+advanced key-value store. keys can contain strings, hashes, lists, sets and sorted sets. Redis is written in c.
+
+Redis can replicate data to any number of slaves.
+
+Redis natively supports Publish/ Subscribe
